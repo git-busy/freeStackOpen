@@ -4,25 +4,29 @@ sequenceDiagram
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
-    Note over server: The HTTP status code, 302, is a URL redirect asking browser to do a new GET request to location specified in Response Headers. end note
     server-->>browser: responds with 302 status code
+    deactivate server
+    Note over server: The HTTP status code, 302, is a URL redirect asking browser to do a new GET request to location specified in Response Headers. end note
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: HTML code
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     activate server
-    server-->>browser: the css file
+    server-->>browser: the main.css file
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
     activate server
-    server-->>browser: the JavaScript file
+    server-->>broswer: the main.js file
     deactivate server
-
-    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+    Note over browser: Browser starts executing code requesting JSON data. end note
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
-    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    server-->>browser: [... , { "content": "writing in the text field", "date": "2025-05-24" }, ... ]
     deactivate server
 
-    Note right of browser: The browser executes the callback function that renders the notes
+    Note under browser: The browser executes the callback function that processes the data and renders the notes. end note

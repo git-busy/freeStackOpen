@@ -4,7 +4,11 @@ sequenceDiagram
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
-    Note over server: The HTTP status code, 302, is a URL redirect asking browser to do a new GET request to location specified in Response Headers. end note
+    Note over server: 
+    The HTTP status code, 302, 
+    is a URL redirect asking browser to do a 
+    new GET request to location specified in Response Headers.
+    end note
     server-->>browser: responds with 302 status code
     deactivate server
 
